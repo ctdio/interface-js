@@ -22,11 +22,9 @@ function createInterface () {
       // throw error if there are unimplemented functions
       if (unimplemented.length) {
         throw new Error('The following function(s) need to be implemented for class ' +
-          constructor.name + ': ' +  unimplemented.join(', '))
+          constructor.name + ': ' + unimplemented.join(', '))
       }
     }
-
-    let proto = Object.getPrototypeOf(this)
   }
 
   return Interface

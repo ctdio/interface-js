@@ -6,11 +6,16 @@
   "dependencies": {},
   "devDependencies": {
     "chai": "^3.5.0",
+    "eslint": "^3.15.0",
+    "eslint-config-standard": "^6.2.1",
+    "eslint-plugin-promise": "^3.4.2",
+    "eslint-plugin-standard": "^2.0.1",
     "mocha": "^3.2.0",
     "nyc": "^10.1.2"
   },
   "scripts": {
-    "test": "nyc mocha"
+    "test": "nyc mocha",
+    "lint": "eslint ."
   },
   "author": "Charlie Duong",
   "license": "MIT",
