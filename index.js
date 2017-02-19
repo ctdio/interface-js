@@ -1,6 +1,6 @@
 function createInterface () {
   // retrieved forced function names
-  let functionNames = Array.prototype.slice.call(arguments)
+  var functionNames = Array.prototype.slice.call(arguments)
 
   function Interface () {
     var constructor = this.constructor

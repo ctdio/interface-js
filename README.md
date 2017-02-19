@@ -1,4 +1,5 @@
 # Interface-js
+[![Build Status](https://travis-ci.org/charlieduong94/interface-js.svg?branch=master)](https://travis-ci.org/charlieduong94/interface-js)
 
 Exposes a way to enforce an interface on classes.
 
@@ -27,7 +28,56 @@ class MyClass extends MyInterface {
 Now, whenever you try to instantiate `MyClass`, the interface will be enforced.
 
 ```js
-let myClass = new MyClass()
-// throws a new error stating:
+let instance = new MyClass()
+// throws a new error with the message:
 // 'The following function(s) need to be implemented for class MyClass: myMethodB'
+```
+
+Of course, the interface is enforced on all subclasses as well.
+
+```js
+class MySubClass extends MyClass {
+  constructor () {
+    super()
+  }
+
+  myMethodA () {
+    // override 'myMethodA'
+  }
+}
+
+let instance = new MySubClass()
+// still throws an error with the message:
+// 'The following function(s) need to be implemented for class MyClass: myMethodB'
+```
+
+Interfaces can be enforced for classes defined the old way too.
+
+```js
+const inherits = require('util').inherits
+
+var MyInterface = new Interface('myMethodA', 'myMethodB', 'myMethodC')
+
+function MyClass () {
+  MyInterface.call(this)
+}
+
+MyClass.prototype.myMethodA = function () {
+  // implementation
+}
+
+function MySubClass () {
+  MyClass.call(this)
+}
+
+// inherit prototype of parent class
+inherits(MySubClass, MyClass)
+
+MySubClass.prototype.myMethodB = function () {
+  // implementation
+}
+
+var instance = new MySubClass()
+// throws an error with the message:
+// 'The following function(s) need to be implemented for class MyClass: myMethodC'
 ```

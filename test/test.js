@@ -54,10 +54,8 @@ describe('interface', function () {
       MyInterface.call(this)
     }
 
-    MyClass.prototype.methodA = function () {}
+    MyClass.prototype.methodA = function () {console.log('methodA called')}
     MyClass.prototype.methodB = function () {}
-
-    inherits(MyClass, Interface)
 
     instance = new MyClass()
   })
@@ -70,8 +68,6 @@ describe('interface', function () {
     }
 
     MyClass.prototype.methodA = function () {}
-
-    inherits(MyClass, Interface)
 
     function MySubClass () {
       MyClass.call(this)
@@ -96,8 +92,6 @@ describe('interface', function () {
 
     MyClass.prototype.methodA = function () {}
 
-    inherits(MyClass, Interface)
-
     function MySubClass () {
       MyClass.call(this)
     }
@@ -121,15 +115,12 @@ describe('interface', function () {
 
     MyClass.prototype.methodA = function () {}
 
-    inherits(MyClass, Interface)
-
     function MySubClass () {
       MyClass.call(this)
     }
 
-    MySubClass.prototype.methodB = function () {}
-
     inherits(MySubClass, MyClass)
+    MySubClass.prototype.methodB = function () {}
 
     instance = new MySubClass()
   })
