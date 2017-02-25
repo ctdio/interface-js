@@ -6,6 +6,7 @@
   "dependencies": {},
   "devDependencies": {
     "chai": "^3.5.0",
+    "coveralls": "^2.11.16",
     "eslint": "^3.15.0",
     "eslint-config-standard": "^6.2.1",
     "eslint-plugin-promise": "^3.4.2",
@@ -14,8 +15,9 @@
     "nyc": "^10.1.2"
   },
   "scripts": {
-    "test": "nyc mocha",
-    "lint": "eslint ."
+    "test": "nyc --reporter=lcov mocha",
+    "lint": "eslint .",
+    "coveralls": "cat ./coverage/lcov.info | coveralls"
   },
   "author": "Charlie Duong",
   "license": "MIT",

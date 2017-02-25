@@ -30,4 +30,15 @@ function createInterface () {
   return Interface
 }
 
+createInterface.create = createInterface
+
+/**
+ *
+ * support old way of creating interface
+ * Ex:
+ *
+ * const MyInterface = new Interface('...', '...')
+ * or
+ * const MyInterface = Interface('...', '...')
+ */
 module.exports = createInterface

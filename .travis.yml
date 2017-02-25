@@ -1,8 +1,10 @@
 nguage: node_js
 node_js:
-  - "7.5.0"
+  - "7.6.0"
   - "6.9.1"
   - "5.0.0"
   - "4.4.4"
 install: npm install
-script: npm test
+script:
+  - npm test
+  - npm run coveralls

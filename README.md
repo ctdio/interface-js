@@ -1,11 +1,18 @@
 # Interface-js
 [![Build Status](https://travis-ci.org/charlieduong94/interface-js.svg?branch=master)](https://travis-ci.org/charlieduong94/interface-js)
+[![Coverage Status](https://coveralls.io/repos/github/charlieduong94/interface-js/badge.svg)](https://coveralls.io/github/charlieduong94/interface-js)
 
 Exposes a way to enforce an interface on classes.
 
 ### Usage
 
 To enforce an interface, first create a new `Interface` and pass it the function names that you want to enforce.
+
+```js
+const MyInterface = Interface.create('myMethodA', 'myMethodB')
+```
+
+or alternatively
 
 ```js
 const MyInterface = new Interface('myMethodA', 'myMethodB')
@@ -61,6 +68,8 @@ var MyInterface = new Interface('myMethodA', 'myMethodB', 'myMethodC')
 function MyClass () {
   MyInterface.call(this)
 }
+
+inherits(MyClass, MyInterface)
 
 MyClass.prototype.myMethodA = function () {
   // implementation
