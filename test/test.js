@@ -8,7 +8,7 @@ describe('interface', function () {
   var instance
   var MyInterface
 
-  function generateTestSuite () {
+  function applyTestSuite () {
     it('should not allow an interface to be instantiated', function () {
       try {
         instance = new MyInterface()
@@ -95,7 +95,7 @@ describe('interface', function () {
       MyInterface = Interface.create('methodA', 'methodB', 'methodC')
     })
 
-    generateTestSuite()
+    applyTestSuite()
   })
 
   context('calling the exposed function directly', function () {
@@ -103,7 +103,7 @@ describe('interface', function () {
       MyInterface = Interface('methodA', 'methodB', 'methodC')
     })
 
-    generateTestSuite()
+    applyTestSuite()
   })
 
   context('creating a "new" interface', function () {
@@ -111,6 +111,6 @@ describe('interface', function () {
       MyInterface = new Interface('methodA', 'methodB', 'methodC')
     })
 
-    generateTestSuite()
+    applyTestSuite()
   })
 })
