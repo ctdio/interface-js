@@ -4,6 +4,12 @@
 
 Exposes a way to enforce an interface on classes.
 
+### Installation
+
+```bash
+npm install --save interface
+```
+
 ### Usage
 
 To enforce an interface, first create a new `Interface` and pass it the function names that you want to enforce.
