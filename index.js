@@ -1,19 +1,18 @@
-function createInterface () {
+function createInterface() {
   // retrieved forced function names
   var functionNames = Array.prototype.slice.call(arguments)
 
-  function Interface () {
+  function Interface() {
     var constructor = this.constructor
 
     if (constructor === Interface) {
       // Interface is being created on it's own
       throw new Error('Cannot create an instance of Interface')
     } else {
-      // assert that each of the functions are defined on the prototype
-      var prototype = Object.getPrototypeOf(this)
-      var unimplemented = []
+      var prototype = Object.getPrototypeOf(this);
+      var unimplemented = [];
 
-      functionNames.forEach(function (functionName) {
+      functionNames.forEach(function(functionName) {
         if (typeof prototype[functionName] !== 'function') {
           unimplemented.push(functionName)
         }
@@ -27,8 +26,23 @@ function createInterface () {
     }
   }
 
+  // expose valiate function
+  Interface.isImplementedBy = function(object) {
+    var prototype = Object.getPrototypeOf(object);
+
+    var length = functionNames.length;
+    while (length--) {
+      if (typeof prototype[functionNames[length]] !== 'function') {
+        return false;
+      }
+    }
+
+    return true;
+  };
+
   return Interface
 }
+
 
 createInterface.create = createInterface
 
