@@ -12,11 +12,11 @@ function createInterface () {
       var prototype = Object.getPrototypeOf(this)
       var unimplemented = []
 
-      functionNames.forEach(function (functionName) {
-        if (typeof prototype[functionName] !== 'function') {
-          unimplemented.push(functionName)
+      for (var i = 0; i < functionNames.length; i++) {
+        if (typeof prototype[functionNames[i]] !== 'function') {
+          unimplemented.push(functionNames[i])
         }
-      })
+      }
 
       // throw error if there are unimplemented functions
       if (unimplemented.length) {
@@ -26,18 +26,19 @@ function createInterface () {
     }
   }
 
-  // expose valiate function
+  // expose validate function
   Interface.isImplementedBy = function (object) {
     var prototype = Object.getPrototypeOf(object)
+    var valid = true
 
-    var length = functionNames.length
-    while (length--) {
-      if (typeof prototype[functionNames[length]] !== 'function') {
-        return false
+    for (var i = 0; i < functionNames.length; i++) {
+      if (typeof prototype[functionNames[i]] !== 'function') {
+        valid = false
+        break
       }
     }
 
-    return true
+    return valid
   }
 
   return Interface

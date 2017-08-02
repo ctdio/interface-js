@@ -41,7 +41,7 @@ class MyClass extends MyInterface {
 Now, whenever you try to instantiate `MyClass`, the interface will be enforced.
 
 ```js
-let instance = new MyClass()
+const instance = new MyClass()
 // throws a new error with the message:
 // 'The following function(s) need to be implemented for class MyClass: myMethodB'
 ```
@@ -59,7 +59,7 @@ class MySubClass extends MyClass {
   }
 }
 
-let instance = new MySubClass()
+const instance = new MySubClass()
 // still throws an error with the message:
 // 'The following function(s) need to be implemented for class MyClass: myMethodB'
 ```
@@ -69,7 +69,7 @@ Interfaces can be enforced for classes defined the old way too.
 ```js
 const inherits = require('util').inherits
 
-var MyInterface = new Interface('myMethodA', 'myMethodB', 'myMethodC')
+const MyInterface = new Interface('myMethodA', 'myMethodB', 'myMethodC')
 
 function MyClass () {
   MyInterface.call(this)
@@ -95,4 +95,29 @@ MySubClass.prototype.myMethodB = function () {
 var instance = new MySubClass()
 // throws an error with the message:
 // 'The following function(s) need to be implemented for class MyClass: myMethodC'
+```
+
+You can also enforce that arbitrary objects match an interface by using
+the `isImplementedBy` method.
+
+```js
+const MyInterface = new Interface('myMethod')
+
+class MyClass {
+  myMethod () {
+    // some implementation
+  }
+}
+
+class MyOtherClass {
+  myOtherMethod () {
+    // some implementation
+  }
+}
+
+const instanceA = new MyClass()
+const instanceB = new MyOtherClass()
+
+MyInterface.isImplementedBy(instanceA) // returns true
+MyInterface.isImplementedBy(instanceB) // returns false
 ```
