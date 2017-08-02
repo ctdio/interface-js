@@ -1,6 +1,6 @@
 {
   "name": "interface",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "description": "Enforce an interface on classes",
   "main": "index.js",
   "dependencies": {},
