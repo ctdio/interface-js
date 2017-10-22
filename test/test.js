@@ -80,7 +80,6 @@ describe('interface', function () {
       MySubClass.prototype.methodB = function () {}
       MySubClass.prototype.methodC = function () {}
 
-
       function MySubSubClass () {
         MyClass.call(this)
       }
@@ -112,5 +111,25 @@ describe('interface', function () {
     })
 
     applyTestSuite()
+  })
+
+  describe('validate implementation without being a child of interface', function () {
+    var MyInterface = new Interface('methodA')
+
+    it('should return false for bad child', function () {
+      class BadChild {}
+
+      expect(MyInterface.isImplementedBy(new BadChild())).to.be.false
+    })
+
+    it('should return true for good child', function () {
+      class GoodChild extends MyInterface {
+        methodA () {
+          return true
+        }
+      }
+
+      expect(MyInterface.isImplementedBy(new GoodChild())).to.be.true
+    })
   })
 })

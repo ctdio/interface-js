@@ -9,15 +9,14 @@ function createInterface () {
       // Interface is being created on it's own
       throw new Error('Cannot create an instance of Interface')
     } else {
-      // assert that each of the functions are defined on the prototype
       var prototype = Object.getPrototypeOf(this)
       var unimplemented = []
 
-      functionNames.forEach(function (functionName) {
-        if (typeof prototype[functionName] !== 'function') {
-          unimplemented.push(functionName)
+      for (var i = 0; i < functionNames.length; i++) {
+        if (typeof prototype[functionNames[i]] !== 'function') {
+          unimplemented.push(functionNames[i])
         }
-      })
+      }
 
       // throw error if there are unimplemented functions
       if (unimplemented.length) {
@@ -25,6 +24,21 @@ function createInterface () {
           constructor.name + ': ' + unimplemented.join(', '))
       }
     }
+  }
+
+  // expose validate function
+  Interface.isImplementedBy = function (object) {
+    var prototype = Object.getPrototypeOf(object)
+    var valid = true
+
+    for (var i = 0; i < functionNames.length; i++) {
+      if (typeof prototype[functionNames[i]] !== 'function') {
+        valid = false
+        break
+      }
+    }
+
+    return valid
   }
 
   return Interface
