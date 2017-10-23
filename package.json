@@ -7,19 +7,15 @@
   "devDependencies": {
     "chai": "^4.0.1",
     "coveralls": "^2.11.16",
-    "eslint": "^4.3.0",
-    "eslint-config-standard": "^10.2.1",
-    "eslint-plugin-import": "^2.8.0",
-    "eslint-plugin-node": "^5.2.0",
-    "eslint-plugin-promise": "^3.4.2",
-    "eslint-plugin-standard": "^3.0.1",
     "mocha": "^3.2.0",
-    "nyc": "^11.0.1"
+    "nyc": "^11.0.1",
+    "snazzy": "^7.0.0",
+    "standard": "^10.0.3"
   },
   "scripts": {
     "pretest": "npm run lint",
     "test": "nyc --reporter=lcov mocha",
-    "lint": "eslint .",
+    "lint": "standard --verbose | snazzy",
     "coveralls": "cat ./coverage/lcov.info | coveralls"
   },
   "author": "Charlie Duong",

@@ -1,3 +1,5 @@
+/* eslint-env mocha */
+
 var expect = require('chai').expect
 
 var Interface = require('../index.js')
@@ -119,7 +121,7 @@ describe('interface', function () {
     it('should return false for bad child', function () {
       class BadChild {}
 
-      expect(MyInterface.isImplementedBy(new BadChild())).to.be.false
+      expect(MyInterface.isImplementedBy(new BadChild())).to.equal(false)
     })
 
     it('should return true for good child', function () {
@@ -129,7 +131,7 @@ describe('interface', function () {
         }
       }
 
-      expect(MyInterface.isImplementedBy(new GoodChild())).to.be.true
+      expect(MyInterface.isImplementedBy(new GoodChild())).to.equal(true)
     })
   })
 })
