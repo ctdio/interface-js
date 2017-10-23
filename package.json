@@ -5,20 +5,18 @@
   "main": "index.js",
   "dependencies": {},
   "devDependencies": {
-    "chai": "^3.5.0",
+    "chai": "^4.0.1",
     "coveralls": "^2.11.16",
-    "eslint": "^4.3.0",
-    "eslint-config-standard": "^6.2.1",
-    "eslint-plugin-promise": "^3.4.2",
-    "eslint-plugin-standard": "^2.0.1",
     "mocha": "^3.2.0",
-    "nyc": "^10.1.2"
+    "nyc": "^11.0.1",
+    "snazzy": "^7.0.0",
+    "standard": "^10.0.3"
   },
   "scripts": {
     "pretest": "npm run lint",
-    "test": "nyc --reporter=lcov mocha",
-    "lint": "eslint .",
-    "coveralls": "cat ./coverage/lcov.info | coveralls"
+    "test": "nyc mocha",
+    "lint": "standard --verbose | snazzy",
+    "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "author": "Charlie Duong",
   "license": "MIT",
