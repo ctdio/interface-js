@@ -14,9 +14,9 @@
   },
   "scripts": {
     "pretest": "npm run lint",
-    "test": "nyc --reporter=lcov mocha",
+    "test": "nyc mocha",
     "lint": "standard --verbose | snazzy",
-    "coveralls": "cat ./coverage/lcov.info | coveralls"
+    "coveralls": "nyc report --reporter=text-lcov | coveralls"
   },
   "author": "Charlie Duong",
   "license": "MIT",
